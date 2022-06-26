@@ -4,7 +4,7 @@ This is a simple Terraform automation to implement a VPC with 1 public subnet an
 An EC2 instance has been launched on the public subnet.
 A MYSQL RDS service is created on the private subnet.
 
-############################################################################################################
+################################################################################
 
 1.Create our main.tf, variables.tf and output.tf files in the root folder and initialize Terraform.   
 2.Invoke the vpc module from our main.tf file to create a VPC.   
@@ -84,6 +84,23 @@ tags = {
 }`
 
 
-4.
+4. Initialize and setup the RDS database instance.
+`resource "aws_db_instance" "default" {
+  allocated_storage    = 100
+  storage_type         = "gp2"
+  engine               = "mysql"
+  engine_version       = "8.0"
+  instance_class       = "db.t2.micro"
+  identifier           = "mydb"
+  name                 = "mydb"
+  username             = "root"
+  password             = "foobarbaz"
+  parameter_group_name = aws_db_parameter_group.default.id
+  db_subnet_group_name = aws_db_subnet_group.default.id
+  vpc_security_group_ids = [ aws_security_group.rds-sg.id ]
+  publicly_accessible  = false
+  skip_final_snapshot  = true
+  multi_az             = false
+}`
 
-
+5. terraform apply.
