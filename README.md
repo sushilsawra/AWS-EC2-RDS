@@ -10,7 +10,7 @@ A MYSQL RDS service is created on the private subnet.
 2.Invoke the vpc module from our main.tf file to create a VPC.   
  
 ---main.tf
-`provider "aws" {
+provider "aws" {
   profile                 = "test"
   region                  = var.aws_region
 }
@@ -29,7 +29,7 @@ module "vpc" {
 
 data "aws_availability_zones" "available" {
   state = "available"
-}`
+}
 
 
 3.Create a configuration file for EC2 instance in the root folder.
