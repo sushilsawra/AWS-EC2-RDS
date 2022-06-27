@@ -12,6 +12,6 @@ A MYSQL RDS service is created on the private subnet.
  
 3.Create a configuration file for EC2 instance in the root folder.
 
-4. Initialize and setup the RDS database instance.
+4.Initialize and setup the RDS database instance.
 
-5. terraform apply.
+5.terraform apply.
